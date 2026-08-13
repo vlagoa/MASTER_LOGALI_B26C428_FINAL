@@ -1,0 +1,5 @@
+@EndUserText.label: 'Sales Order - Services Definition'
+define service ZSB_SALES_ORDER_4518 {
+  expose ZC_SALES_OR_H_4518 as Header;
+  expose ZC_SALES_OR_P_4518 as Position;
+}
