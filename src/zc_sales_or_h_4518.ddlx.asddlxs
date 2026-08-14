@@ -1,0 +1,69 @@
+@Metadata.layer: #CORE
+annotate entity ZC_SALES_OR_H_4518 with
+{
+  @EndUserText.label: 'Sales Order UUID'
+    @UI.hidden: true
+  SoUUID;
+  @EndUserText.label: 'Order ID'
+  @UI: {
+  lineItem: [{ position: 10, label: 'Order ID'  }],
+   selectionField: [{ position: 10 }]
+  }
+  SoID;
+  
+  @EndUserText.label: 'Email'
+    @UI: {
+  lineItem: [{ position: 20  }]
+  }
+  Email;
+  
+  @EndUserText.label: 'First Name'
+    @UI: {
+  lineItem: [{ position: 30  }],
+  selectionField: [{ position: 20 }]
+  }
+  FirstName;
+  
+  @EndUserText.label: 'Last Name'
+    @UI: {
+  lineItem: [{ position: 40  }],
+  selectionField: [{ position: 30 }]
+  }
+  LastName;
+  
+  @EndUserText.label: 'Country'
+    @UI: {
+  lineItem: [{ position: 50  }]
+  }
+  Country;
+  @EndUserText.label: 'Create On'
+    @UI: {
+  lineItem: [{ position: 60  }],
+  selectionField: [{ position: 60 }]
+  }
+  CreateOn;
+  @EndUserText.label: 'Delivery date'
+    @UI: {
+  lineItem: [{ position: 70  }]
+  }
+  DeliveryDate;
+  @EndUserText.label: 'Status'
+    @UI: {
+  lineItem: [{ position: 80  }]
+  }
+  OrderStatus;
+  @EndUserText.label: 'Image URL'
+    @UI: {
+  lineItem: [{ position: 90  }]
+  }
+  ImageUrl;
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+
+}
