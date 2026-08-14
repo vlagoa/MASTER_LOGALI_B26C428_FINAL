@@ -1,0 +1,32 @@
+managed;
+strict ( 2 );
+
+define behavior for ZI_SALES_OR_H_4518 alias Header
+implementation in class zbp_i_sales_or_h_4518 unique
+persistent table zsales_or_h_4518
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+  field ( readonly, numbering : managed  ) SoUUID;
+  field ( readonly ) SoID, LastChangedBy, LastChangedAt, CreatedAt, CreatedBy, CreateOn, StatusCriticality;
+  association _Item;
+}
+
+define behavior for ZI_SALES_OR_P_4518 alias Positions
+implementation in class zbp_i_sales_or_p_4518 unique
+persistent table zsales_or_p_4518
+lock dependent by _header
+authorization dependent by _header
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly, numbering : managed ) SopUUID;
+  field ( mandatory  ) PosSo;
+   field ( readonly : update ) SoUUID;
+  association _header;
+}
