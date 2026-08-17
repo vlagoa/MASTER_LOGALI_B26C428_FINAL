@@ -1,59 +1,91 @@
 @Metadata.layer: #CORE
+@UI: {
+    headerInfo: {
+        typeName: 'Order',
+        typeNamePlural: 'Orders',
+        title: { type: #STANDARD, value: 'SoID' }
+        }
+    }
 annotate entity ZC_SALES_OR_H_4518 with
 {
+
+  @UI.facet: [
+      { id:              'OrderDetails',
+        purpose:         #STANDARD,
+        type:            #IDENTIFICATION_REFERENCE,
+        label:           'General Information',
+        position:        10 },
+
+      { id:              'OrderItems',            
+          purpose:         #STANDARD,
+          type:            #LINEITEM_REFERENCE,     
+          label:           'Positions',             
+          position:        20,
+          targetElement:   '_Item' }               
+        ]
+
   @EndUserText.label: 'Sales Order UUID'
-    @UI.hidden: true
+  @UI.hidden: true
   SoUUID;
+  
   @EndUserText.label: 'Order ID'
   @UI: {
   lineItem: [{ position: 10, label: 'Order ID'  }],
-   selectionField: [{ position: 10 }]
+               identification: [{ position: 10 }],
+               selectionField: [{ position: 10 }]
   }
   SoID;
-  
+
   @EndUserText.label: 'Email'
-    @UI: {
-  lineItem: [{ position: 20  }]
+  @UI: {
+  lineItem: [{ position: 20  }],
+  identification: [{ position: 20 }]
   }
   Email;
-  
+
   @EndUserText.label: 'First Name'
-    @UI: {
+  @UI: {
   lineItem: [{ position: 30  }],
+  identification: [{ position: 30 }],
   selectionField: [{ position: 20 }]
   }
   FirstName;
-  
+
   @EndUserText.label: 'Last Name'
-    @UI: {
+  @UI: {
   lineItem: [{ position: 40  }],
+  identification: [{ position: 40 }],
   selectionField: [{ position: 30 }]
   }
   LastName;
-  
+
   @EndUserText.label: 'Country'
-    @UI: {
-  lineItem: [{ position: 50  }]
+  @UI: {
+  lineItem: [{ position: 50  }],
+  identification: [{ position: 50 }]
   }
   Country;
   @EndUserText.label: 'Create On'
-    @UI: {
+  @UI: {
   lineItem: [{ position: 60  }],
+  identification: [{ position: 11 }],
   selectionField: [{ position: 60 }]
   }
   CreateOn;
   @EndUserText.label: 'Delivery date'
-    @UI: {
-  lineItem: [{ position: 70  }]
+  @UI: {
+  lineItem: [{ position: 70  }],
+  identification: [{ position: 70 }]
   }
   DeliveryDate;
   @EndUserText.label: 'Status'
-    @UI: {
-  lineItem: [{ position: 80  }]
+  @UI: {
+  lineItem: [{ position: 80  }],
+  identification: [{ position: 80 }]
   }
   OrderStatus;
   @EndUserText.label: 'Image URL'
-    @UI: {
+  @UI: {
   lineItem: [{ position: 90  }]
   }
   ImageUrl;

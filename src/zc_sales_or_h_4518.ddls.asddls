@@ -30,6 +30,6 @@ define root view entity ZC_SALES_OR_H_4518
       @Semantics.systemDateTime.lastChangedAt: true
       LastChangedAt,
       /* Associations */
-      //_Item : redirected to composition child ZC_SALES_OR_P_4518,
+      _Item : redirected to composition child ZC_SALES_OR_P_4518,
       _Status
 }

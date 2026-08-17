@@ -21,7 +21,7 @@ association to parent ZI_SALES_OR_H_4518 as _header on $projection.SoUUID = _hea
     depth as Depth,
     quantity as Quantity,
     unit_of_measure as UnitOfMeasure,
-    @Semantics.systemDateTime.lastChangedAt: true
+    @Semantics.systemDateTime.localInstanceLastChangedAt: true
     local_last_changed_at as LocalLastChangedAt,
     _header
 }

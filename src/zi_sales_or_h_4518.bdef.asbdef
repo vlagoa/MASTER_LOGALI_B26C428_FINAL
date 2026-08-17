@@ -1,32 +1,82 @@
 managed;
 strict ( 2 );
+with draft;
 
 define behavior for ZI_SALES_OR_H_4518 alias Header
 implementation in class zbp_i_sales_or_h_4518 unique
 persistent table zsales_or_h_4518
-lock master
+draft table zsales_orh_4518d
+lock master total etag LastChangedAt
 authorization master ( instance )
 etag master LastChangedAt
 {
   create;
   update;
   delete;
-  field ( readonly, numbering : managed  ) SoUUID;
+  field ( readonly, numbering : managed ) SoUUID;
   field ( readonly ) SoID, LastChangedBy, LastChangedAt, CreatedAt, CreatedBy, CreateOn, StatusCriticality;
-  association _Item;
+   field ( mandatory ) Email;
+  determination setOrderId on save { create; }
+
+  association _Item { create; with draft; }
+
+  draft action Resume;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft determine action Prepare;
+
+  mapping for zsales_or_h_4518
+    {
+      SoUUID        = so_uuid;
+      SoID          = so_id;
+      Email         = email;
+      FirstName     = first_name;
+      LastName      = last_name;
+      Country       = country;
+      CreateOn      = create_on;
+      DeliveryDate  = delivery_date;
+      OrderStatus   = order_status;
+      ImageUrl      = image_url;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+
+    }
 }
 
 define behavior for ZI_SALES_OR_P_4518 alias Positions
 implementation in class zbp_i_sales_or_p_4518 unique
 persistent table zsales_or_p_4518
+draft table zsales_orp_4518d
 lock dependent by _header
 authorization dependent by _header
-//etag master <field_name>
+etag master LocalLastChangedAt
 {
   update;
   delete;
   field ( readonly, numbering : managed ) SopUUID;
-  field ( mandatory  ) PosSo;
-   field ( readonly : update ) SoUUID;
-  association _header;
+  field ( mandatory ) Name, Quantity;
+  field ( readonly : update ) SoUUID, PosSo;
+  association _header { with draft; }
+
+  mapping for zsales_or_p_4518
+    {
+      SopUUID            = sop_uuid;
+      SoUUID             = parent_uuid;
+      PosSo              = pos_so;
+      Name               = name;
+      Description        = description;
+      ReleaseDate        = release_date;
+      DiscontinuedDate   = discontinued_date;
+      Price              = price;
+      Height             = height;
+      Width              = width;
+      Depth              = depth;
+      Quantity           = quantity;
+      UnitOfMeasure      = unit_of_measure;
+      LocalLastChangedAt = local_last_changed_at;
+    }
 }

@@ -5,6 +5,7 @@ define root view entity ZI_SALES_OR_H_4518
   as select from zsales_or_h_4518
   composition [0..*] of ZI_SALES_OR_P_4518         as _Item
   association [0..1] to ZI_SALES_OR_STATUS_VH_4518 as _Status on $projection.OrderStatus = _Status.StatusCode
+  //association [1..1] to I_Country
 {
   key so_uuid                                as SoUUID,
       so_id                                  as SoID,
@@ -32,6 +33,8 @@ define root view entity ZI_SALES_OR_H_4518
       last_changed_by                        as LastChangedBy,
       @Semantics.systemDateTime.lastChangedAt: true
       last_changed_at                        as LastChangedAt,
+       @Semantics.systemDateTime.localInstanceLastChangedAt: true 
+      local_last_changed_at as LocalLastChangedAt,                    
 
       _Item,
       _Status
