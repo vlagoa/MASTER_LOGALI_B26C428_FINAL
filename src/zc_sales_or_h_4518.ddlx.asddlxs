@@ -4,10 +4,12 @@
         typeName: 'Order',
         typeNamePlural: 'Orders',
         title: { type: #STANDARD, value: 'SoID' }
+
         }
     }
 annotate entity ZC_SALES_OR_H_4518 with
 {
+
 
   @UI.facet: [
       { id:              'OrderDetails',
@@ -16,18 +18,18 @@ annotate entity ZC_SALES_OR_H_4518 with
         label:           'General Information',
         position:        10 },
 
-      { id:              'OrderItems',            
+      { id:              'OrderItems',
           purpose:         #STANDARD,
-          type:            #LINEITEM_REFERENCE,     
-          label:           'Positions',             
+          type:            #LINEITEM_REFERENCE,
+          label:           'Positions',
           position:        20,
-          targetElement:   '_Item' }               
+          targetElement:   '_Item' }
         ]
 
   @EndUserText.label: 'Sales Order UUID'
   @UI.hidden: true
   SoUUID;
-  
+
   @EndUserText.label: 'Order ID'
   @UI: {
   lineItem: [{ position: 10, label: 'Order ID'  }],
@@ -62,7 +64,8 @@ annotate entity ZC_SALES_OR_H_4518 with
   @EndUserText.label: 'Country'
   @UI: {
   lineItem: [{ position: 50  }],
-  identification: [{ position: 50 }]
+  identification: [{ position: 50 }],
+  selectionField: [{ position: 40 }]
   }
   Country;
   @EndUserText.label: 'Create On'
@@ -78,13 +81,29 @@ annotate entity ZC_SALES_OR_H_4518 with
   identification: [{ position: 70 }]
   }
   DeliveryDate;
+
   @EndUserText.label: 'Status'
   @UI: {
-  lineItem: [{ position: 80  }],
-  identification: [{ position: 80 }]
+            lineItem: [{
+                    position: 80,
+                    cssDefault.width: '10rem',
+                    criticality: 'StatusCriticality',
+                    criticalityRepresentation: #WITH_ICON
+                      }],
+
+             identification: [{ position: 80,
+                            criticality: 'StatusCriticality',
+                            criticalityRepresentation: #WITH_ICON
+                                }],
+              selectionField: [{ position: 80 }]                     
   }
   OrderStatus;
-  @EndUserText.label: 'Image URL'
+    @EndUserText.label: 'Order ID'
+  StatusCriticality;
+    @UI.hidden: true
+  StatusText;
+  
+ @EndUserText.label: 'Image URL'
   @UI: {
   lineItem: [{ position: 90  }]
   }
@@ -97,5 +116,6 @@ annotate entity ZC_SALES_OR_H_4518 with
   LastChangedBy;
   @UI.hidden: true
   LastChangedAt;
+
 
 }

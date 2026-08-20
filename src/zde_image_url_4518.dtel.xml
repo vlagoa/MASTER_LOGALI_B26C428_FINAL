@@ -19,6 +19,19 @@
     <REFKIND>D</REFKIND>
     <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
    </DD04V>
+   <I18N_LANGS>
+    <LANGU>S</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>S</DDLANGUAGE>
+     <DDTEXT>URL de imagen</DDTEXT>
+     <REPTEXT>Img. URL</REPTEXT>
+     <SCRTEXT_S>Img. URL</SCRTEXT_S>
+     <SCRTEXT_M>Img. URL</SCRTEXT_M>
+     <SCRTEXT_L>Img. URL</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -15,7 +15,7 @@ etag master LastChangedAt
   delete;
   field ( readonly, numbering : managed ) SoUUID;
   field ( readonly ) SoID, LastChangedBy, LastChangedAt, CreatedAt, CreatedBy, CreateOn, StatusCriticality;
-   field ( mandatory ) Email;
+  field ( mandatory ) Email;
   determination setOrderId on save { create; }
 
   association _Item { create; with draft; }
@@ -24,26 +24,29 @@ etag master LastChangedAt
   draft action Edit;
   draft action Activate optimized;
   draft action Discard;
-  draft determine action Prepare;
+  draft determine action Prepare
+  {
+    validation validateEmail;
+  }
 
+  validation validateEmail on save { create; update; }
   mapping for zsales_or_h_4518
     {
-      SoUUID        = so_uuid;
-      SoID          = so_id;
-      Email         = email;
-      FirstName     = first_name;
-      LastName      = last_name;
-      Country       = country;
-      CreateOn      = create_on;
-      DeliveryDate  = delivery_date;
-      OrderStatus   = order_status;
-      ImageUrl      = image_url;
-      CreatedBy     = created_by;
-      CreatedAt     = created_at;
-      LastChangedBy = last_changed_by;
-      LastChangedAt = last_changed_at;
+      SoUUID             = so_uuid;
+      SoID               = so_id;
+      Email              = email;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Country            = country;
+      CreateOn           = create_on;
+      DeliveryDate       = delivery_date;
+      OrderStatus        = order_status;
+      ImageUrl           = image_url;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
       LocalLastChangedAt = local_last_changed_at;
-
     }
 }
 
@@ -59,8 +62,11 @@ etag master LocalLastChangedAt
   delete;
   field ( readonly, numbering : managed ) SopUUID;
   field ( mandatory ) Name, Quantity;
-  field ( readonly : update ) SoUUID, PosSo;
+  field ( readonly ) SoUUID, PosSo;
   association _header { with draft; }
+
+  determination setPositionNumber on save { create; }
+
 
   mapping for zsales_or_p_4518
     {

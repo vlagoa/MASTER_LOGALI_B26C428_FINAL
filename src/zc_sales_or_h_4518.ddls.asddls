@@ -5,6 +5,7 @@
 define root view entity ZC_SALES_OR_H_4518
   provider contract transactional_query
   as projection on ZI_SALES_OR_H_4518
+  
 
 {
   key SoUUID,
@@ -12,13 +13,20 @@ define root view entity ZC_SALES_OR_H_4518
       Email,
       FirstName,
       LastName,
-      Country,
+      @ObjectModel.text.element: [ 'CountryName' ]
+      @Consumption.valueHelpDefinition: [{ 
+        entity: { name: 'i_Country', element: 'Country' }
+        }]
+      Country, 
+      _CountryText.CountryName as CountryName,
       CreateOn,
       DeliveryDate,
-      @ObjectModel.text.element: [ 'StatusText' ]
+      
+       @ObjectModel.text.element: [ 'StatusText' ] 
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_SALES_OR_STATUS_VH_4518', element: 'StatusCode' } }]
       OrderStatus,
       _Status.StatusText as StatusText,
+      
       ImageUrl,
       StatusCriticality,
       @Semantics.user.createdBy: true
@@ -31,5 +39,6 @@ define root view entity ZC_SALES_OR_H_4518
       LastChangedAt,
       /* Associations */
       _Item : redirected to composition child ZC_SALES_OR_P_4518,
-      _Status
+      _Status,
+      _CountryText
 }

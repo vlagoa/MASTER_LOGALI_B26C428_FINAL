@@ -9,6 +9,8 @@ define view entity ZI_SALES_OR_STATUS_VH_4518
                                                                                                 and Texts.language     = $session.system_language
 {
        @ObjectModel.text.element: [ 'StatusText' ]
-  key  cast( Values.value_low as abap.numc( 3 ) ) as StatusCode,
+       @UI.textArrangement: #TEXT_ONLY
+      @UI.lineItem: [{importance: #HIGH}]
+  key  cast( Values.value_low as abap.char( 3 ) ) as StatusCode,
        Texts.text       as StatusText
 }
